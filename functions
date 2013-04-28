@@ -1,0 +1,23 @@
+# -*-shell-script-*-
+
+. "$genapp_functions/core"
+
+dart_version=dartsdk-0.4.7_r21658-linux-64
+
+install_app() {
+    echo "Copying application files to $app_dir"
+    cp -a $pkg_dir/* $app_dir
+
+    chmod -R +r+w $app_dir	
+
+    echo "Install Dart SDK"
+    cd $app_dir
+    tar xf  $plugin_dir/lib/$dart_version.tar.gz
+    chmod  +rw dart-sdk
+    		
+}
+
+write_control() {
+    echo "Writing control scripts to $control_dir"
+    install -m 750 $plugin_dir/control/start $control_dir
+}

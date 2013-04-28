@@ -1,0 +1,6 @@
+#!/bin/bash -eu
+
+. "$plugin_dir/functions"
+
+install_app
+write_control

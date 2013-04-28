@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+set -u
+
+echo "Running app from $app_dir"
+
+ls -l dart-sdk
+exec dart-sdk/bin/dart main.dart
