@@ -3,4 +3,5 @@
 . "$plugin_dir/functions"
 
 install_app
+write_config
 write_control

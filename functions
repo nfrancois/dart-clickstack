@@ -8,13 +8,19 @@ install_app() {
     echo "Copying application files to $app_dir"
     cp -a $pkg_dir/* $app_dir
 
-    chmod -R +r+w $app_dir	
-
+    chmod -R +r+w $app_dir
+    
     echo "Install Dart SDK"
     cd $app_dir
     tar xf  $plugin_dir/lib/$dart_version.tar.gz
-    chmod  +rw dart-sdk
+    chmod -R 0774 dart-sdk
     		
+}
+
+write_config() {
+    _config="$app_dir/.genapp/control/env_exports"
+    echo "Writing configuration to $_config"
+    echo "export PORT=$app_port" >> $_config
 }
 
 write_control() {

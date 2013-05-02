@@ -2,7 +2,11 @@
 set -e
 set -u
 
+cd $app_dir
+
+. $app_dir/.genapp/control/env_exports
+
+
 echo "Running app from $app_dir"
 
-ls -l dart-sdk
 exec dart-sdk/bin/dart main.dart
