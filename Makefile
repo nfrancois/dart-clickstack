@@ -14,7 +14,8 @@
 # name ends with "-plugin". Examples include java-plugin, play2-plugin,
 # tomcat7-plugin, etc.
 #
-plugin_name = dart-plugin-0.4.7_r21658
+plugin_name = dart-plugin-0.5.3_r22223
+
 
 # ClickStack plugins are published to S3. The publish_bucket is used to
 # specify the S3 bucket to publish to.

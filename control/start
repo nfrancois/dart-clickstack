@@ -9,4 +9,4 @@ cd $app_dir
 
 echo "Running app from $app_dir"
 
-exec dart-sdk/bin/dart main.dart
+exec dart main.dart

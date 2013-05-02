@@ -2,28 +2,41 @@
 
 . "$genapp_functions/core"
 
-dart_version=dartsdk-0.4.7_r21658-linux-64
+dart_version=dartsdk-0.5.3_r22223-linux-64
 
 install_app() {
     echo "Copying application files to $app_dir"
     cp -a $pkg_dir/* $app_dir
 
-    chmod -R +r+w $app_dir
-    
+    chmod -R g+w $app_dir
+ }
+
+ install_dart_sdk() {   
     echo "Install Dart SDK"
     cd $app_dir
     tar xf  $plugin_dir/lib/$dart_version.tar.gz
-    chmod -R 0774 dart-sdk
-    		
+    chmod -R 0770 dart-sdk
+    export DART_SDK=$app_dir/dart-sdk
+    mkdir -p .pub-cache
+    export PUB_CACHE=$app_dir/.pub-cache
 }
 
 write_config() {
     _config="$app_dir/.genapp/control/env_exports"
     echo "Writing configuration to $_config"
     echo "export PORT=$app_port" >> $_config
+    echo "export DART_SDK=$DART_SDK" >> $_config
+    echo "export PATH=$PATH:$DART_SDK/bin/" >> $_config
 }
 
 write_control() {
     echo "Writing control scripts to $control_dir"
     install -m 750 $plugin_dir/control/start $control_dir
+}
+
+install_dart_packages(){ 
+    if [ -e pubspec.yaml ]; then
+        echo "Installing packages"
+        $DART_SDK/bin/pub --trace install
+    fi
 }
