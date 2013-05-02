@@ -14,7 +14,7 @@
 # name ends with "-plugin". Examples include java-plugin, play2-plugin,
 # tomcat7-plugin, etc.
 #
-plugin_name = dart-plugin-0.5.3_r22223
+plugin_name = dart-plugin
 
 
 # ClickStack plugins are published to S3. The publish_bucket is used to
@@ -58,7 +58,7 @@ deps =
 # Directories that are specified in pkg_files are always copied recursively
 # in their entirety.
 
-pkg_files = README.md LICENSE setup functions control lib
+pkg_files = README.md LICENSE setup functions control
 
 # = Core makefile support
 #

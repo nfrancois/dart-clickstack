@@ -14,11 +14,16 @@ install_app() {
  install_dart_sdk() {   
     echo "Install Dart SDK"
     cd $app_dir
-    tar xf  $plugin_dir/lib/$dart_version.tar.gz
-    chmod -R 0770 dart-sdk
+    # if no build number is set, download latest
+    #if [ $BUILD ]; then
+        BUILD="latest"
+    #fi
+    DART_SDK_URL="http://commondatastorage.googleapis.com/dart-editor-archive-integration/$BUILD/dartsdk-linux-64.tar.gz"
+    curl -L $DART_SDK_URL -s -o - | tar xzf -
+
+    #tar xf  $plugin_dir/lib/$dart_version.tar.gz
     export DART_SDK=$app_dir/dart-sdk
-    mkdir -p .pub-cache
-    export PUB_CACHE=$app_dir/.pub-cache
+    chmod -R 0770 $DART_SDK 
 }
 
 write_config() {
@@ -35,6 +40,8 @@ write_control() {
 }
 
 install_dart_packages(){ 
+    mkdir -p .pub-cache
+    export PUB_CACHE=$app_dir/.pub-cache
     if [ -e pubspec.yaml ]; then
         echo "Installing packages"
         $DART_SDK/bin/pub --trace install
