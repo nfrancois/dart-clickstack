@@ -9,6 +9,8 @@ install_app() {
     cp -a $pkg_dir/* $app_dir
 
     chmod -R g+w $app_dir
+
+    chmod +x bin/*
  }
 
  install_dart_sdk() {   

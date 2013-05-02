@@ -6,7 +6,6 @@ cd $app_dir
 
 . $app_dir/.genapp/control/env_exports
 
-
 echo "Running app from $app_dir"
 
-exec dart main.dart
+exec bin/run.sh
