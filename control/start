@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-set -u
 
 cd $app_dir
 
@@ -10,4 +9,4 @@ DART_VERSION=`cat $DART_SDK/version`
 echo 'Dart build '$DART_VERSION
 echo "Running app from $app_dir"
 
-exec bin/run.sh
+exec dart ${main_dart-main.dart}

@@ -9,8 +9,6 @@ install_app() {
     cp -a $pkg_dir/* $app_dir
 
     chmod -R g+w $app_dir
-
-    chmod +x bin/*
  }
 
  install_dart_sdk() {   
@@ -22,9 +20,8 @@ install_app() {
     DART_SDK_URL="http://commondatastorage.googleapis.com/dart-editor-archive-integration/$BUILD/dartsdk-linux-64.tar.gz"
     curl -L $DART_SDK_URL -s -o - | tar xzf -
 
-    #tar xf  $plugin_dir/lib/$dart_version.tar.gz
     export DART_SDK=$app_dir/dart-sdk
-    chmod -R 0770 $DART_SDK 
+    chmod -R 0775 $DART_SDK 
 }
 
 write_config() {
@@ -35,16 +32,17 @@ write_config() {
     echo "export PATH=$PATH:$DART_SDK/bin/" >> $_config
 }
 
-write_control() {
-    echo "Writing control scripts to $control_dir"
-    install -m 750 $plugin_dir/control/start $control_dir
-}
-
 install_dart_packages(){ 
-    mkdir -p .pub-cache
-    export PUB_CACHE=$app_dir/.pub-cache
-    if [ -e pubspec.yaml ]; then
+    if [ -e pubspec.yaml ];
+    then
+        mkdir -p .pub-cache
+        export PUB_CACHE=$app_dir/.pub-cache    
         echo "Installing packages"
         $DART_SDK/bin/pub --trace install
     fi
+}
+
+write_control() {
+    echo "Writing control scripts to $control_dir"
+    install -m 750 $plugin_dir/control/start $control_dir
 }
