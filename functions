@@ -38,7 +38,8 @@ install_dart_packages(){
         mkdir -p .pub-cache
         export PUB_CACHE=$app_dir/.pub-cache    
         echo "Installing packages"
-        $DART_SDK/bin/pub --trace install
+        $DART_SDK/bin/pub install
+        chmod -R 555 $PUB_CACHE
     fi
 }
 
