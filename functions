@@ -16,8 +16,8 @@ install_app() {
     cd $app_dir
     
     # if no build number is set, download latest
-    BUILD=${BUILD:="latest"}
-    DART_SDK_URL="http://commondatastorage.googleapis.com/dart-editor-archive-integration/$BUILD/dartsdk-linux-64.tar.gz"
+    DART_BUILD=${DART_BUILD:="latest"}
+    DART_SDK_URL="http://commondatastorage.googleapis.com/dart-editor-archive-integration/$DART_BUILD/dartsdk-linux-64.tar.gz"
     curl -L $DART_SDK_URL -s -o - | tar xzf -
 
     export DART_SDK=$app_dir/dart-sdk
