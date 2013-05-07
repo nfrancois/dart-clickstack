@@ -20,7 +20,7 @@ The [Cloudbees SDK](http://wiki.cloudbees.com/bin/view/RUN/BeesSDK) must be inst
 ```
 cd sampleapp
 zip -r ../app.zip *
-bees app:deploy -a playground/node -t node -RPLUGIN.SRC.node=https://s3.amazonaws.com/clickstacks/nicofrancois/dart-plugin.zip ../app.zip
+bees app:deploy -a MYAPP_ID -t node -RPLUGIN.SRC.node=https://s3.amazonaws.com/clickstacks/nicofrancois/dart-plugin.zip ../app.zip
 ```
 
 ### Main
@@ -28,7 +28,7 @@ bees app:deploy -a playground/node -t node -RPLUGIN.SRC.node=https://s3.amazonaw
 main.dart is the default main. If you want to overrride it :
 
 ```
-bees config:set playground/node main-dart=whereismymain.dart
+bees config:set MYAPP_ID main-dart=whereismymain.dart
 ```
 
 
@@ -38,5 +38,5 @@ By default, this clickstack use the last Dart SDK version.
 If you want a specific one, just define the DART_BUILD environment variable :
 
 ```
-bees config:set -a playground/node DART_BUILD=version
+bees config:set -a MYAPP_ID DART_BUILD=version
 ```
