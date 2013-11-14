@@ -13,12 +13,16 @@ install_app() {
     echo "Install Dart SDK"
     cd $app_dir
     
-    # if no build number is set, download latest
-    DART_BUILD=${DART_BUILD:="latest"}
-    DART_SDK_URL="http://commondatastorage.googleapis.com/dart-editor-archive-integration/$DART_BUILD/dartsdk-linux-64.tar.gz"
-    curl -L $DART_SDK_URL -s -o - | tar xzf -
+    # TODO : if no build number is set, download latest
+    #DART_BUILD=${DART_BUILD:="latest"}
+    DART_SDK_URL="http://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip"
+    DART_SDK_ZIP="dart_sql.zip"
 
+    curl -L $DART_SDK_URL > $DART_SDK_ZIP
+    unzip $DART_SDK_ZIP
+    rm -f $DART_SDK_ZIP
     export DART_SDK=$app_dir/dart-sdk
+    
     chmod -R 0775 $DART_SDK 
 }
 
