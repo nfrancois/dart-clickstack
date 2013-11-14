@@ -2,8 +2,6 @@
 
 . "$genapp_functions/core"
 
-dart_version=dartsdk-0.5.3_r22223-linux-64
-
 install_app() {
     echo "Copying application files to $app_dir"
     cp -a $pkg_dir/* $app_dir
@@ -38,7 +36,7 @@ install_dart_packages(){
         mkdir -p .pub-cache
         export PUB_CACHE=$app_dir/.pub-cache    
         echo "Installing packages"
-        $DART_SDK/bin/pub install
+        $DART_SDK/bin/pub get
         chmod -R 555 $PUB_CACHE
     fi
 }
