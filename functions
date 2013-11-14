@@ -2,6 +2,8 @@
 
 . "$genapp_functions/core"
 
+dart_version=dartsdk-1.0.0.3_r30188-linux-64
+
 install_app() {
     echo "Copying application files to $app_dir"
     cp -a $pkg_dir/* $app_dir
